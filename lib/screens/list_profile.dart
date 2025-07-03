@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:profile_provider_static/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 import '../providers/profile_provider.dart';
 import '../screens/detail_profile.dart';
@@ -28,7 +29,23 @@ class _ListProfileState extends State<ListProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Daftar Profil")),
+      appBar: AppBar(
+        title: const Text("Daftar Profil"),
+        actions: [
+          Consumer<ThemeProvider>(
+            builder: (context, themeProvider, _) {
+              return IconButton(
+                icon: Icon(
+                  themeProvider.isDark ? Icons.dark_mode : Icons.light_mode,
+                ),
+                onPressed: () {
+                  themeProvider.toggleTheme();
+                },
+              );
+            },
+          ),
+        ],
+      ),
       body: Consumer<ProfileProvider>(
         builder: (context, profileProvider, child) {
           final profiles = profileProvider.profiles;
