@@ -69,7 +69,6 @@ class _ListProfileState extends State<ListProfile> {
                     ),
                   );
 
-                  // Bisa digunakan untuk refresh atau feedback lain kalau perlu
                   if (result == true) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text("Profil diperbarui")),
@@ -115,6 +114,7 @@ class _ListProfileState extends State<ListProfile> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           final provider = context.read<ProfileProvider>();
+
           final int quoteIndex =
               DateTime.now().millisecondsSinceEpoch % quotes.length;
           int lastIndex = provider.profiles.length;
